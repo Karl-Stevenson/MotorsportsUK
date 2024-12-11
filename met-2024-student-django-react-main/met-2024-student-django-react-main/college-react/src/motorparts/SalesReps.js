@@ -61,7 +61,7 @@ export default function App() {
                 </span>
             </div>
             <br/>
-            <Link to='/creatsalesrep' class="bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
+            <Link to='/createsalesrep/' class="bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
                     Add a Sales Representative
             </Link>
             <table className='my-3 table-fixed sm:table-auto w-5/6'>

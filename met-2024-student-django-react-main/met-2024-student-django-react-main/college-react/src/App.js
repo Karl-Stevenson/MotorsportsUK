@@ -3,6 +3,7 @@ import Nav from './motorparts/Nav'
 import Home from './motorparts/Home'
 import SalesReps from './motorparts/SalesReps'
 import ViewSalesReps from './motorparts/ViewSalesReps'
+import CreateSalesReps from './motorparts/CreateSalesReps'
 // import Nav from './course_manager/Nav'
 // import Home from './course_manager/Home'
 // import CourseFetcher from './course_manager/Courses';
@@ -51,6 +52,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/salesreps" element={<SalesReps />} />
         <Route path="/salesreps/:id" element={<ViewSalesReps />} />
+        <Route path="/createsalesrep" element={<CreateSalesReps />} />
       </Routes>
     </BrowserRouter>
   )

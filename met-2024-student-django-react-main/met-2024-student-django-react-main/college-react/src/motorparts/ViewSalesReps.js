@@ -11,6 +11,8 @@ export default function App() {
     const [email, setEmail] = useState(null);
     const [team, setTeam] = useState(null);
 
+    const [status, setStatus] = useState(false);
+
     function SetSalesRep(data){
         setName(data.name)
         setPosition(data.position)
@@ -38,7 +40,7 @@ export default function App() {
 
         fetch('/api/sales-representatives/' + id + '/', requestOptions)
             .then((response) => response.json())
-            .then(() => window.location.href = '/salesreps')
+            .then(() => setStatus(true))
             .catch((e) => console.log(e));
     };
 
@@ -54,7 +56,7 @@ export default function App() {
             .then((response) => response.json())
             .then((data) => SetSalesRep(data))
             .catch((e) => console.log(e));
-    });
+    }, []);
 
     return (
         <center>
@@ -63,6 +65,7 @@ export default function App() {
                     View & Update Sales Representative
                 </span>
             </div>
+            {!status ?
             <form className='w-full max-w-lg' onSubmit={handleSubmit}>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
@@ -115,6 +118,16 @@ export default function App() {
                     </button>
                 </div>
             </form>
+            :
+            <div className='w-full max-w-lg'>
+            <div className="text-3xl font-bold p-3">Sales Representative Updated &#x2705;</div>
+            <div class="mx-3 mb-6 content-center p-3">
+                <Link to='/salesreps' class="m-1 bg-transparent hover:bg-slate-900 text-slate-700 font-semibold hover:text-white py-2 px-4 border border-slate-700 hover:border-transparent rounded">
+                    Go Back to List
+                </Link>
+            </div>
+        </div>
+}
         </center>
     )
 }
