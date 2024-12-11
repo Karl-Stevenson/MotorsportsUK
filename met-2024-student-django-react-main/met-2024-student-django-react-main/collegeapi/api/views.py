@@ -3,8 +3,8 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Course, Lecturer, Student 
-from .serializers import CourseSerializer, LecturerSerializer, StudentSerializer
+from .models import Course, Lecturer, Student, Team, SalesRepresentative, Customer, Location, Client, Opportunity
+from .serializers import CourseSerializer, LecturerSerializer, StudentSerializer, TeamSerializer, SalesRepresentativeSerializer, ClientSerializer, CustomerSerializer, LocationSerializer, OpportunitySerializer
 
 # Create your views here.
 class CourseViewSet(viewsets.ModelViewSet): 
@@ -46,3 +46,32 @@ class StudentsInCourseView(APIView):
             return Response({'course_id': course_id, 'students_enrolled': num_students})
         except Course.DoesNotExist:
             return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+class TeamViewSet(viewsets.ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+ 
+ 
+class SalesRepresentativeViewSet(viewsets.ModelViewSet):
+    queryset = SalesRepresentative.objects.all()
+    serializer_class = SalesRepresentativeSerializer
+ 
+ 
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+ 
+ 
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+ 
+ 
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+ 
+ 
+class OpportunityViewSet(viewsets.ModelViewSet):
+    queryset = Opportunity.objects.all()
+    serializer_class = OpportunitySerializer

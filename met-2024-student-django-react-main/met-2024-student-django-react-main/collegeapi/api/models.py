@@ -27,3 +27,77 @@ class Course(models.Model):
 
     def __str__(self): 
         return self.title
+    
+class Team(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    email = models.EmailField(blank=True)
+ 
+    def __str__(self):
+        return self.name
+ 
+ # parent = models.ForeignKey('self',on_delete=models.NULL,null=True, blank=True)
+class SalesRepresentative(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='sales_reps')
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    email = models.EmailField()
+ 
+    def __str__(self):
+        return self.name
+ 
+ 
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    email = models.EmailField()
+ 
+    def __str__(self):
+        return self.name
+ 
+ 
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    industry = models.CharField(max_length=100, blank=True)
+    email = models.EmailField()
+    clients = models.ManyToManyField(Client, related_name='customers')
+    phone = models.CharField(max_length=15, blank=True)
+    sales_representatives = models.ManyToManyField(SalesRepresentative, related_name='customers')
+ 
+    def __str__(self):
+        return self.name
+ 
+ 
+class Location(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='locations')
+    address = models.TextField()
+    phone = models.CharField(max_length=15, blank=True)
+    manager = models.CharField(max_length=100, blank=True)
+ 
+    def __str__(self):
+        return f"{self.address} - {self.manager}"
+ 
+ 
+class Opportunity(models.Model):
+    STAGES = [
+        ('Researching', 'Researching'),
+        ('Prospecting', 'Prospecting'),
+        ('Qualifying', 'Qualifying'),
+        ('Pitching', 'Pitching'),
+        ('Negotiating', 'Negotiating'),
+        ('Closing', 'Closing'),
+    ]
+ 
+    description = models.TextField()
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    stage = models.CharField(max_length=20, choices=STAGES, default='Researching')
+    close_date = models.DateField()
+    sales_rep = models.ForeignKey(SalesRepresentative, on_delete=models.CASCADE, related_name='opportunities')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='opportunities')
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True, related_name='opportunities')
+ 
+    def __str__(self):
+        return f"Opportunity: {self.description} ({self.stage})"
