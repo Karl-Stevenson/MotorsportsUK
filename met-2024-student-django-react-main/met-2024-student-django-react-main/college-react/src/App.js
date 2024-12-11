@@ -7,6 +7,8 @@ import CreateSalesReps from './motorparts/CreateSalesReps'
 import Customer from './motorparts/Customers'
 import ViewCustomer from './motorparts/ViewCustomer'
 import CreateCustomer from './motorparts/CreateCustomer'
+import ViewClient from './motorparts/ViewClient'
+import CreateClient from './motorparts/CreateClient'
 // import Nav from './course_manager/Nav'
 // import Home from './course_manager/Home'
 // import CourseFetcher from './course_manager/Courses';
@@ -59,6 +61,8 @@ function App() {
         <Route path="/customers" element={<Customer />} />
         <Route path="/customers/:id" element={<ViewCustomer />} />
         <Route path="/createcustomer" element={<CreateCustomer />} />
+        <Route path="/clients/:id" element={<ViewClient />} />
+        <Route path="/createclient/:id/" element={<CreateClient />} />
       </Routes>
     </BrowserRouter>
   )
