@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Creating models here.
 class Lecturer(models.Model): 
     first_name = models.CharField(max_length=100) 
     last_name = models.CharField(max_length=100) 
@@ -28,6 +28,8 @@ class Course(models.Model):
     def __str__(self): 
         return self.title
     
+    
+# Model for Sales team
 class Team(models.Model):
     name = models.CharField(max_length=100)
     #position = models.CharField(max_length=100, blank=True)
@@ -36,7 +38,8 @@ class Team(models.Model):
  
     def __str__(self):
         return self.name
- 
+    
+#  Model for SalesRepresentative
  # parent = models.ForeignKey('self',on_delete=models.NULL,null=True, blank=True)
 class SalesRepresentative(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='sales_reps')
@@ -48,7 +51,7 @@ class SalesRepresentative(models.Model):
     def __str__(self):
         return self.name
     
-    
+#  Model for Customer
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     industry = models.CharField(max_length=100, blank=True)
@@ -61,7 +64,7 @@ class Customer(models.Model):
         return self.name
  
  
- 
+# Model for representing a client associated with a customer
 class Client(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=100, blank=True)
@@ -74,7 +77,7 @@ class Client(models.Model):
  
 
  
- 
+# Model for representing a location associated with a customer
 class Location(models.Model):
     address = models.TextField()
     phone = models.CharField(max_length=15, blank=True)
@@ -83,8 +86,9 @@ class Location(models.Model):
  
     def __str__(self):
         return f"{self.address} - {self.manager}"
+    
  
- 
+#  Model for SalesOpportunity
 class Opportunity(models.Model):
     STAGES = [
         ('Researching', 'Researching'),
