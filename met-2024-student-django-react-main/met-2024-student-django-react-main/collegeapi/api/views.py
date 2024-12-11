@@ -19,6 +19,27 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
+# This view is for getting location by customer id
+class CustomerLocationsView(APIView):
+    def get(self, request, customer_id):
+        try:
+            customer = Customer.objects.get(pk=customer_id)
+            locations = Location.objects.filter(customer=customer)
+            serializer = LocationSerializer(locations, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Customer.DoesNotExist:
+            return Response({"error": "Customer not found"}, status=status.HTTP_404_NOT_FOUND)
+
+class CustomerClientsView(APIView):
+    def get(self, request, customer_id):
+        try:
+            customer = Customer.objects.get(pk=customer_id)
+            clients = Client.objects.filter(customer=customer)
+            serializer = ClientSerializer(clients, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Customer.DoesNotExist:
+            return Response({"error": "Customer not found"}, status=status.HTTP_404_NOT_FOUND)
+
 class StudentByNumberDetail(APIView):
     def get(self, request, student_number):
         try:
