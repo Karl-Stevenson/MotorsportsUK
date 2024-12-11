@@ -47,23 +47,13 @@ class SalesRepresentative(models.Model):
  
     def __str__(self):
         return self.name
- 
- 
-class Client(models.Model):
-    name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100, blank=True)
-    phone = models.CharField(max_length=15, blank=True)
-    email = models.EmailField()
- 
-    def __str__(self):
-        return self.name
- 
- 
+    
+    
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     industry = models.CharField(max_length=100, blank=True)
     email = models.EmailField()
-    clients = models.ManyToManyField(Client, related_name='customers')
+    # clients = models.ForeignKey(Client, related_name='customers')
     phone = models.CharField(max_length=15, blank=True)
     #sales_representatives = models.ManyToManyField(SalesRepresentative, related_name='customers')
  
@@ -71,11 +61,25 @@ class Customer(models.Model):
         return self.name
  
  
+ 
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    email = models.EmailField()
+    customer = models.ForeignKey(Customer,on_delete=models.SET_NULL,null= True,blank = True)
+ 
+    def __str__(self):
+        return self.name
+ 
+
+ 
+ 
 class Location(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='locations')
     address = models.TextField()
     phone = models.CharField(max_length=15, blank=True)
     manager = models.CharField(max_length=100, blank=True)
+    customer = models.ForeignKey(Customer,on_delete=models.SET_NULL,null= True,blank = True)
  
     def __str__(self):
         return f"{self.address} - {self.manager}"
