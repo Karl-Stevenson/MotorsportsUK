@@ -30,9 +30,9 @@ class Course(models.Model):
     
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100, blank=True)
-    phone = models.CharField(max_length=15, blank=True)
-    email = models.EmailField(blank=True)
+    #position = models.CharField(max_length=100, blank=True)
+    #phone = models.CharField(max_length=15, blank=True)
+    #email = models.EmailField(blank=True)
  
     def __str__(self):
         return self.name
@@ -65,7 +65,7 @@ class Customer(models.Model):
     email = models.EmailField()
     clients = models.ManyToManyField(Client, related_name='customers')
     phone = models.CharField(max_length=15, blank=True)
-    sales_representatives = models.ManyToManyField(SalesRepresentative, related_name='customers')
+    #sales_representatives = models.ManyToManyField(SalesRepresentative, related_name='customers')
  
     def __str__(self):
         return self.name
