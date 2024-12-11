@@ -238,7 +238,7 @@ export default function App() {
                 </span>
             </div>
             <br/>
-            <Link to='/createclient/' class="bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
+            <Link to={'/createlocation/'+ id + '/?n=' + name  } class="bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
                     Add a Location
             </Link>
             </div>

@@ -9,6 +9,8 @@ import ViewCustomer from './motorparts/ViewCustomer'
 import CreateCustomer from './motorparts/CreateCustomer'
 import ViewClient from './motorparts/ViewClient'
 import CreateClient from './motorparts/CreateClient'
+import ViewLocation from './motorparts/ViewLocation'
+import CreateLocation from './motorparts/CreateLocation'
 // import Nav from './course_manager/Nav'
 // import Home from './course_manager/Home'
 // import CourseFetcher from './course_manager/Courses';
@@ -49,7 +51,7 @@ import './App.css'
 // }
 
 function App() {
-  document.title = "Motorparts CRM"
+  document.title = "Motorparts CRM Portal"
   return (
     <BrowserRouter>
       <Nav />
@@ -63,6 +65,8 @@ function App() {
         <Route path="/createcustomer" element={<CreateCustomer />} />
         <Route path="/clients/:id" element={<ViewClient />} />
         <Route path="/createclient/:id/" element={<CreateClient />} />
+        <Route path="/locations/:id" element={<ViewLocation />} />
+        <Route path="/createlocation/:id/" element={<CreateLocation />} />
       </Routes>
     </BrowserRouter>
   )
