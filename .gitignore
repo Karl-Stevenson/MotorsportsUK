@@ -131,6 +131,7 @@ dist
 
 
 # Byte-compiled / optimized / DLL files
+*.pyc
 __pycache__/
 __pycache__
 **/__pycache__/
