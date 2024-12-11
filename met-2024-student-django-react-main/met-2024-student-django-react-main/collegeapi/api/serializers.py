@@ -1,6 +1,8 @@
 from rest_framework import serializers 
 from .models import Course, Lecturer, Student, Team, SalesRepresentative, Customer, Location, Client, Opportunity
 
+
+# Creating Serializers for all the models 
 class CourseSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Course 
