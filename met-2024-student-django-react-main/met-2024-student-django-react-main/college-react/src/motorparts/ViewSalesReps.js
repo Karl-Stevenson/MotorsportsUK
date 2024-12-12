@@ -58,6 +58,46 @@ export default function App() {
             .catch((e) => console.log(e));
     }, []);
 
+    const [reps, setReps] = useState([])
+
+    useEffect(() => {
+
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        fetch('/api/sales-representatives/', requestOptions)
+            .then((response) => response.json())
+            .then((data) => setReps(data))
+            //.then((data) => console.log(data))
+            .catch((e) => console.log(e));
+    }, []);
+
+    const validateEmail = (data) => {
+        let element = document.getElementById("email");
+        if(reps.map((a)=>a.email).indexOf(data)>0){
+            element.setCustomValidity("Duplicate Email Address");
+            element.reportValidity();
+        }else{  
+            element.setCustomValidity("");
+        }
+        setEmail(data)
+    }
+
+    const validatePhone = (data) => {
+        let element = document.getElementById("phone");
+        if(reps.map((a)=>a.phone).indexOf(data)>=0){
+            element.setCustomValidity("Duplicate Phone Number");
+            element.reportValidity();
+        }else{  
+            element.setCustomValidity("");
+        }
+        setPhone(data)
+    }
+
     return (
         <center>
             <div className="text-5xl font-bold p-3">
@@ -94,13 +134,13 @@ export default function App() {
                                 required/>
                         </div>
                         <div class="w-full md:w-1/2 px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="phone">
                                 Phone
                             </label>
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-                                id="grid-last-name" type="text" placeholder="7XXXXXXXXX"
+                                id="phone" type="text" placeholder="7XXXXXXXXX"
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)} 
+                                onChange={(e) => validatePhone(e.target.value)} 
                                 required
                                 pattern="^(?:0|\+?44)(?:\d\s?){9,10}$"/>
                                 <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
@@ -110,13 +150,13 @@ export default function App() {
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                                 Email
                             </label>
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-                                id="grid-password" type="email" placeholder="jane@motorparts.com"
+                                id="email" type="email" placeholder="jane@motorparts.com"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)} 
+                                onChange={(e) => validateEmail(e.target.value)} 
                                 required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 />
