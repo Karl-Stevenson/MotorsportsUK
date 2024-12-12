@@ -54,10 +54,10 @@ export default function App() {
 
     const validateEmail = (data) => {
         let element = document.getElementById("email");
-        if(reps.map((a)=>a.email).indexOf(data)>0){
+        if (reps.map((a) => a.email).indexOf(data) >= 0) {
             element.setCustomValidity("Duplicate Email Address");
             element.reportValidity();
-        }else{  
+        } else {
             element.setCustomValidity("");
         }
         setEmail(data)
@@ -65,10 +65,10 @@ export default function App() {
 
     const validatePhone = (data) => {
         let element = document.getElementById("phone");
-        if(reps.map((a)=>a.phone).indexOf(data)>=0){
+        if (reps.map((a) => a.phone).indexOf(data) >= 0) {
             element.setCustomValidity("Duplicate Phone Number");
             element.reportValidity();
-        }else{  
+        } else {
             element.setCustomValidity("");
         }
         setPhone(data)
@@ -106,8 +106,8 @@ export default function App() {
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
                                 id="grid-first-name" type="text" placeholder="Sales Associate"
                                 value={position}
-                                onChange={(e) => setPosition(e.target.value)} 
-                                required/>
+                                onChange={(e) => setPosition(e.target.value)}
+                                required />
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="phone">
@@ -116,10 +116,10 @@ export default function App() {
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
                                 id="phone" type="text" placeholder="7XXXXXXXXX"
                                 value={phone}
-                                onChange={(e) => validatePhone(e.target.value)} 
+                                onChange={(e) => validatePhone(e.target.value)}
                                 required
-                                pattern="^(?:0|\+?44)(?:\d\s?){9,10}$"/>
-                                <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                                pattern="^(?:0|\+?44)(?:\d\s?){9,10}$" />
+                            <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                                 Please enter a valid UK phone number
                             </span>
                         </div>
@@ -132,11 +132,11 @@ export default function App() {
                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
                                 id="email" type="email" placeholder="jane@motorparts.com"
                                 value={email}
-                                onChange={(e) => validateEmail(e.target.value)} 
+                                onChange={(e) => validateEmail(e.target.value)}
                                 required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                />
-                                <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                            />
+                            <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                                 Please enter a valid email
                             </span>
                         </div>
@@ -157,7 +157,7 @@ export default function App() {
                         <Link to='/salesreps' class="m-1 bg-transparent hover:bg-slate-900 text-slate-700 font-semibold hover:text-white py-2 px-4 border border-slate-700 hover:border-transparent rounded">
                             Go Back to List
                         </Link>
-                        <Link id='addMore' onClick={()=>window.location.reload()} to='/createsalesrep/' class="m-1 bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
+                        <Link id='addMore' onClick={() => window.location.reload()} to='/createsalesrep/' class="m-1 bg-transparent hover:bg-green-700 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-700 hover:border-transparent rounded">
                             Add More
                         </Link>
                     </div>
