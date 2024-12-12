@@ -6,18 +6,6 @@ from rest_framework import status
 from .models import Course, Lecturer, Student, Team, SalesRepresentative, Customer, Location, Client, Opportunity
 from .serializers import CourseSerializer, LecturerSerializer, StudentSerializer, TeamSerializer, SalesRepresentativeSerializer, ClientSerializer, CustomerSerializer, LocationSerializer, OpportunitySerializer
 
-# Create your views here.
-class CourseViewSet(viewsets.ModelViewSet): 
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-
-class LecturerViewSet(viewsets.ModelViewSet): 
-    queryset = Lecturer.objects.all()
-    serializer_class = LecturerSerializer
-
-class StudentViewSet(viewsets.ModelViewSet): 
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
 
 # This view is for getting location by customer id
 class CustomerLocationsView(APIView):
@@ -96,3 +84,18 @@ class LocationViewSet(viewsets.ModelViewSet):
 class OpportunityViewSet(viewsets.ModelViewSet):
     queryset = Opportunity.objects.all()
     serializer_class = OpportunitySerializer
+    
+    
+
+# Create your views here.
+class CourseViewSet(viewsets.ModelViewSet): 
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+class LecturerViewSet(viewsets.ModelViewSet): 
+    queryset = Lecturer.objects.all()
+    serializer_class = LecturerSerializer
+
+class StudentViewSet(viewsets.ModelViewSet): 
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
